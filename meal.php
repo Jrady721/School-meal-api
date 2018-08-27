@@ -1,6 +1,6 @@
 <?php
 // include library
-include 'include/simplehtmldom_1_5/simple_html_dom.php';
+include 'include/simple_html_dom.php';
 
 // 특정 날짜의 특정 타입의 급식 가져오기
 function getMeal($date = null, $type = null, $office = null, $school = null, $level = null)
