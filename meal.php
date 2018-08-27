@@ -12,6 +12,8 @@ function getMeal($date = null, $type = null, $office = null, $school = null, $le
         return json_encode(array('status' => '400', 'message' => '모든 데이터를 올바르게 입력해주세요.'), JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
     }
 
+    if($date === null) $date = date('Y.m.d');
+
     // type setting
     $mealType = array('아침식사', '점심식사', '저녁식사');
 
