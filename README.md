@@ -1,18 +1,27 @@
 # School-meal-api (전국 급식 API)
 
-### 설명
-특정날짜의 특정타입의 급식을 가지고 올 수 있습니다.   
-사용법은 meal.php에 기술해 놓았으니 참고해주세요  
-simple_html_dom을 사용하였습니다
+### API 설명
+```
+이 API는 특정날짜의 특정타입의 급식을 메뉴별로 가지고 올 수 있습니다.   
+api서버를 열긴 했는데 개인적으로 meal.php 만 있으면 따로 구현할 수 있기에 그 쪽을 추천드립니다..
+개인 서버라 터질 수도 있어서, 추가로 simple_html_dom을 사용하였습니다
+```
 
-### getMeal(date, type, office, school, level)
-> **날짜 (date)  형식: YYYY.mm.dd**   
+### GET (메뉴별 급식 가져오기)
+**http://jrady721.cafe24.com/api/jmeal/날짜/type/타입/office/교육청/school/학교코드/level/학교분류 (GET)**
+
+> **날짜 (date)  
+```
+형식: YYYY.mm.dd**   
 ex 2018.08.16
+```
 
 > **타입 (type)**  
+```
 1: 조식, 2: 중식, 3: 석식
-
+```
 > **교육청 (office)**  
+```
 서울시 교육청 : sen.go.kr  
 경기도 교육청 : goe.go.kr  
 강원도 교육청 : kwe.go.kr  
@@ -29,14 +38,18 @@ ex 2018.08.16
 대전광역시 교육청 : dje.go.kr  
 인천광역시 교육청 : ice.go.kr  
 대구광역시 교육청 : dge.go.kr  
-
+```
 > **학쿄코드 (school)**  
+```
 학교코드 검색: https://www.meatwatch.go.kr/biz/bm/sel/schoolListPopup.do
+```
 
 > **학교분류 (level)**  
+```
 유치원: 1, 초등학교 2, 중학교 3, 고등학교 4
-
+```
 > **예시 (example)**  
+
 http://jrady721.cafe24.com/api/jmeal/2018.08.16/type/1/office/dge.go.kr/school/D100000282/level/4  
 
 > Result:
