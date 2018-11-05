@@ -8,7 +8,9 @@ api서버를 열긴 했는데 개인적으로 meal.php 만 있으면 따로 구�
 ```
 
 ### GET (메뉴별 급식 가져오기)
-**http://jrady721.cafe24.com/api/jmeal/날짜/type/타입/office/교육청/school/학교코드/level/학교분류 (GET)**
+```
+http://jrady721.cafe24.com/api/meal/날짜/type/타입/office/교육청/school/학교코드/level/학교분류 (GET)
+```
 
 > **날짜 (date)  
 ```
@@ -41,7 +43,8 @@ ex 2018.08.16
 ```
 > **학쿄코드 (school)**  
 ```
-학교코드 검색: https://www.meatwatch.go.kr/biz/bm/sel/schoolListPopup.do
+학교코드 검색: 
+https://www.meatwatch.go.kr/biz/bm/sel/schoolListPopup.do
 ```
 
 > **학교분류 (level)**  
@@ -50,7 +53,7 @@ ex 2018.08.16
 ```
 > **예시 (example)**  
 
-http://jrady721.cafe24.com/api/jmeal/2018.08.16/type/1/office/dge.go.kr/school/D100000282/level/4  
+http://jrady721.cafe24.com/api/meal/2018.08.16/type/1/office/dge.go.kr/school/D100000282/level/4  
 
 > Result:
 ```json
