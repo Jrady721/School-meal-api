@@ -12,7 +12,7 @@ api서버를 열긴 했는데 개인적으로 meal.php 만 있으면 따로 구�
 http://jrady721.cafe24.com/api/meal/날짜/type/타입/office/교육청/school/학교코드/level/학교분류 (GET)
 ```
 
-> **날짜 (date)  
+> **날짜 (date)**
 ```
 형식: YYYY.mm.dd**   
 ex 2018.08.16
@@ -69,3 +69,8 @@ http://jrady721.cafe24.com/api/meal/2018.08.16/type/1/office/dge.go.kr/school/D1
     ]  
 }  
 ```
+
+> **활용**
+
+웹 사이트: http://jrady721.cafe24.com/meal  
+구글 확장프로그램: https://github.com/Jrady721/School-meal-extension
