@@ -3,8 +3,7 @@
 ### API 설명
 ```
 이 API는 특정날짜의 특정타입의 급식을 메뉴별로 가지고 올 수 있습니다.   
-api서버를 열긴 했는데 개인적으로 meal.php 만 있으면 따로 구현할 수 있기에 그 쪽을 추천드립니다..
-개인 서버라 터질 수도 있어서, 추가로 simple_html_dom을 사용하였습니다
+api서버를 개인적으로 열긴 했으나 meal.php로 개별적 구현을 추천드립니다.
 ```
 
 ### GET (메뉴별 급식 가져오기)
@@ -24,7 +23,7 @@ ex 2018.08.16
 ```
 > **교육청 (office)**  
 ```
-서울시 교육청 : sen.go.kr  
+서울특별시 교육청 : sen.go.kr  
 경기도 교육청 : goe.go.kr  
 강원도 교육청 : kwe.go.kr  
 전라남도 교육청 : jne.go.kr  
@@ -40,12 +39,13 @@ ex 2018.08.16
 대전광역시 교육청 : dje.go.kr  
 인천광역시 교육청 : ice.go.kr  
 대구광역시 교육청 : dge.go.kr  
+세종특별자치시 교육청 : sje.go.kr  
 ```
 > **학쿄코드 (school)**  
-```
-학교코드 검색: 
-https://www.meatwatch.go.kr/biz/bm/sel/schoolListPopup.do
-```
+
+### School API - 전국 학교 API
+https://github.com/Jrady721/School-search-api
+ 
 
 > **학교분류 (level)**  
 ```
@@ -73,4 +73,4 @@ http://jrady721.cafe24.com/api/meal/2018.08.16/type/1/office/dge.go.kr/school/D1
 > **활용**
 
 웹 사이트: http://jrady721.cafe24.com/meal  
-구글 확장프로그램: https://github.com/Jrady721/School-meal-extension
+구글(웨일) 확장프로그램: https://github.com/Jrady721/School-meal-extension
