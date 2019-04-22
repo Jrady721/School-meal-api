@@ -9,7 +9,7 @@ api서버를 개인적으로 열긴 했으나 meal.php로 개별적 구현을 �
 ### 버전 관리 (현재버전: V1.03)
 ```
 V1.00
- - 전국 유치원, 초,중,고등학교의 영양소 정보를 제거한 급식 메뉴를 가져옵니다.
+ - 전국 초, 중, 고등학교의 영양소 정보를 제거한 급식 메뉴를 가져옵니다.
 V1.01
  - 기존의 메뉴중 혼합10곡이 있을경우 혼합, 곡으로 메뉴를 가져오는 문제 해결.
 V1.02
@@ -148,4 +148,4 @@ http://jrady721.cafe24.com/api/nextmeal/dge.go.kr/school/D100000282/level/4
 ### 활용
 
 웹 사이트: http://jrady721.cafe24.com/meal  
-구글(웨일) 확장프로그램: https://github.com/Jrady721/School-meal-extension
+구글(웨일) 확장프로그램: https://github.com/Jrady721/school-meal-extension
