@@ -1,4 +1,4 @@
-# School-meal-api - 전국 급식 API
+# school-meal-api - 전국 급식 API
 
 ### API 설명
 ```
