@@ -1,23 +1,17 @@
 <?php
 
 // simple_html_dom V 1.8.1
-include_once 'simple_html_dom.php';
+include_once 'include/simple_html_dom.php';
 
 // 전국 급식 API, 특정 날짜의 특정 타입의 급식 가져오기
-function getMeal($date = null, $type = null, $office = null, $school = null, $level = null)
+function getMeal($date, $type, $office, $school, $level)
 {
     // 헤더 설정
     Header('Content-Type: application/json');
 
-    // 인자 확인
-    if ($date == null || $type == null || $office == null || $school == null || $level == null) {
-        return json_encode(array('status' => '400', 'message' => '모든 데이터를 올바르게 입력해주세요.'), JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
-    }
-
-    // 오늘 날짜 생성
-    if ($date == null) $date = date('Y.m.d');
     // 타입 설정
-    $mealType = array('아침식사', '점심식사', '저녁식사');
+    $mealType = array('breakfast', 'lunch', 'dinner');
+
     // URL 생성
     $url = "https://stu.$office/sts_sci_md01_001.do?schulCode=$school&schulCrseScCode=$level&schMmealScCode=$type&schYmd=$date";
 
@@ -29,6 +23,7 @@ function getMeal($date = null, $type = null, $office = null, $school = null, $le
 
     // 현재 날짜를 구한다.
     foreach ($table->find('thead th') as $index => $element) {
+
         // 현재날짜 공백제거
         $this_date = preg_replace("/\(.*\)/iU", "", $element->plaintext);
 
@@ -53,22 +48,14 @@ function getMeal($date = null, $type = null, $office = null, $school = null, $le
         }
     }
     // 에러 반환
-    return json_encode(array('status' => '400', 'message' => '실패!'), JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
+    return json_encode(array('status' => '400', 'message' => '데이터를 가져오는데 실패하였습니다.'), JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
 }
 
-// 전국 급식 API, 특정 날짜의 급식 전부 가져오기 * 개인적으로 속도가 느려 사용 비추!
-function getMeals($date = null, $office = null, $school = null, $level = null)
+// 전국 급식 API, 특정 날짜의 급식 전부 가져오기 * 개인적으로 속도가 느려 사용 추천하지 않습니다.
+function getMeals($date, $office, $school, $level)
 {
     // 헤더 설정
     Header('Content-Type: application/json');
-
-    // 인자 확인
-    if ($date == null || $office == null || $school == null || $level == null) {
-        return json_encode(array('status' => '400', 'message' => '모든 데이터를 올바르게 입력해주세요.'), JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
-    }
-
-    // 날짜 생성
-    if ($date == null) $date = date('Y.m.d');
 
     // 타입 설정
     $mealType = array('breakfast', 'lunch', 'dinner');
@@ -78,12 +65,44 @@ function getMeals($date = null, $office = null, $school = null, $level = null)
 
     // 아침, 점심, 저녁 가져오기
     for ($i = 1; $i <= 3; $i++) {
-        $url = "http://jrady721.cafe24.com/api/meal/$date/type/$i/office/$office/school/$school/level/$level";
-        $json = file_get_contents($url);
+        $json = getMeal($date, $i, $office, $school, $level);
         $meal = json_decode($json, true);
-        $meals[$mealType[$i - 1]] = $meal;
+        $meals[$mealType[$i - 1]] = $meal['menus'];
     }
 
     // 결과 반환
     return json_encode($meals, JSON_UNESCAPED_UNICODE + JSON_PRETTY_PRINT);
 }
+
+// 다음 급식 가져오기
+function nextMeal($office, $school, $level)
+{
+    // 시간 설정 -- 이 부분은 원래 스스로 설정해줘야합니다.
+    date_default_timezone_set('Asia/Seoul');
+
+    $date = date('Y.m.d');
+    $time = date('H:i:s');
+
+    // 시간 지정
+    $breakfast = date('07:20:00');
+    $lunch = date('12:30:00');
+    $dinner = date('18:20:00');
+
+    if ($time > $dinner) {
+        $date = date('Y.m.d', strtotime(date('d.m.Y') . "+1 days"));
+        $type = 1;
+    } else if ($time > $lunch) {
+        $type = 3;
+    } else if ($time > $breakfast) {
+        $type = 2;
+    } else {
+        $type = 1;
+    }
+
+    return getMeal($date, $type, $office, $school, $level);
+}
+
+// 사용
+//echo getMeal('2019.04.22', '2', 'dge.go.kr', 'D100000282', '4');
+//echo getMeals('2019.04.22', 'dge.go.kr', 'D100000282', '4');
+//echo nextMeal('dge.go.kr', 'D100000282', '4');
